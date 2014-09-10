@@ -64,8 +64,19 @@ class: center, middle
 
 * This is the most obvious and widely talked about
 * Blind users
+  * use screen readers
+  * more on how to help with this later
 * Partially-sighted users
+  * user screen zooming (sometimes just magnifying glass)
+  * ensure your content scales well
+  * allow user to focus on content
+* Photosensitive
+  * consider low-contrast or dark-themed version of the site
+  * be aware polarised lenses can sometimes interfere with the ability
+    to view the screen on some devics
 * Colour blindness
+  * use a valid colour scheme or allow user to choose one that suits them
+  * try to include symbols as well as colours for indication
 
 ---
 
@@ -75,6 +86,10 @@ class: center, middle
 
 ???
 
+* Audio description
+* Transcription
+* Translate to British Sign Language
+
 ---
 
 class: center, middle
@@ -82,6 +97,9 @@ class: center, middle
 # Motor
 
 ???
+
+* keyboard only input
+* voice activation
 
 ---
 
@@ -91,13 +109,20 @@ class: center, middle
 
 ???
 
+* In some cases only so much you can do
+* Pitch to the lowest reading level you need to
+* Lay your content out well
+* Be clear an concise in your message
+
 ---
 
 class: center, middle
 
-# Other
+# Seizures
 
 ???
+
+* Be aware that certain things can cause photoepileptic seizures
 
 ---
 
@@ -115,6 +140,10 @@ class: center, middle
 
 ???
 
+* You have a limited amount of time/money
+* Is it possible for your content to be consumed by a group
+  even with the best a11y you can manage (i.e. severe cognitive issues)?
+
 ---
 
 class: center, middle
@@ -122,6 +151,9 @@ class: center, middle
 # Accessible by default?
 
 ???
+
+* There is definitely low hanging fruit
+* For example, many javascript UI libs have a11y built in
 
 ---
 
@@ -131,6 +163,13 @@ class: center, middle
 
 ???
 
+* You shouldn't cut users off from your content just because you haven't
+  factored in time to make it available to them
+* On the one hand you may want to take the time to make your app available
+  to anyone
+* On the other hand you may want to try some research to prove that there is
+  a genuine need for the support
+
 ---
 
 class: center, middle
@@ -139,13 +178,20 @@ class: center, middle
 
 ???
 
+* JavaScript allows you to do some powerful things
+* But there is a reason that it sometimes gets a bad rap in the a11y world
+* With great power yada yada
+
 ---
 
 class: center, middle
 
-# Hiding content
+# Hiding content/functionality
 
 ???
+
+* Adding new content to the page that Assistive Devices can't see
+* Rollover effects that are missed by screen readers
 
 ---
 
@@ -155,6 +201,10 @@ class: center, middle
 
 ???
 
+* Breaking, or worse changing, the default browser/OS controls
+* Constantly changing/updating content
+* Moving the position of the user within the page without warning
+
 ---
 
 class: center, middle
@@ -162,6 +212,10 @@ class: center, middle
 # Taking away control
 
 ???
+
+* Not giving users the option to change your defaults
+* Locking them in to your apps control system and making it
+  hard or impossible to get out
 
 ---
 
@@ -171,6 +225,10 @@ class: center, middle
 
 ???
 
+* WAI-ARIA standard from W3C
+* Way to add semantic information to elements through HTML/XML attributes
+* Has three types of attributes: roles, properties and states
+
 ---
 
 class: center, middle
@@ -178,6 +236,13 @@ class: center, middle
 # Roles
 
 ???
+
+* Describe the purpose of an element
+* divs and spans do not have enough semantic information to derive purpose
+* allow assistive devices to interact with a widget, such as a form, slider
+  or tabbed view as if it were a desktop equivalent
+* once a role is set it should not be changed
+* if you need to change role use a new element instead
 
 ---
 
@@ -187,6 +252,11 @@ class: center, middle
 
 ???
 
+* Define characteristics of an element
+* required
+* draggable
+* associated modal
+
 ---
 
 class: center, middle
@@ -194,6 +264,14 @@ class: center, middle
 # States
 
 ???
+
+* Indicate the current state of an element
+* disabled
+* checked
+* busy
+* hidden
+* use JavaScript to set the state or property and then
+  use CSS attribute selectors to add style etc.
 
 ---
 
@@ -203,11 +281,32 @@ class: center, middle
 
 ???
 
+* Let you indicate that an element will be updated without a page refresh
+* aria-live indicates that the element is a live region
+  * off (default) = no notification on update
+  * polite = waits until user takes a break until it notifies them
+  * assertive = notifies the user straight away
+* aria-control indicates the live region that the control updates
+* advanced options
+  * atomic = when true notifies all contents of live region, when false only notifies changed items
+  * relevant = only notifies on add and/or update and/or removal
+  * labelledBy
+  * describedBy
+* WARNING: not fully adopted in all browsers
+
 ---
 
 class: center, middle
 
 # Wrapping up
+
+???
+
+---
+
+class: center, middle
+
+# Resources
 
 ???
 
