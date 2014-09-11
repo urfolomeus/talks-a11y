@@ -4,17 +4,14 @@
     <title>Title</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
-      @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-      @import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
-      @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
-
-      body { font-family: 'Droid Serif'; }
+      body { font-family: Serif' 'Helvetica Neue'; }
       h1, h2, h3 {
-        font-family: 'Yanone Kaffeesatz';
+        font-family: 'Helvetica Neue';
         font-weight: normal;
       }
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; text-align: left; }
+      .remark-code, .remark-inline-code { font-family: 'Monaco'; font-size: 16px; text-align: left; }
       img#easy-news { width: 600px }
+      img.color_scope { width: 240px }
     </style>
   </head>
   <body>
@@ -46,6 +43,8 @@ class: center, middle
 
 ---
 
+
+
 class: center, middle
 
 # Impairments
@@ -59,7 +58,7 @@ class: center, middle
 
 class: center, middle
 
-# Visual
+## Visual
 
 ???
 
@@ -85,7 +84,7 @@ class: center, middle
 
 class: center, middle
 
-# Auditory
+## Auditory
 
 ???
 
@@ -97,7 +96,7 @@ class: center, middle
 
 class: center, middle
 
-# Motor
+## Motor
 
 ???
 
@@ -108,7 +107,7 @@ class: center, middle
 
 class: center, middle
 
-# Cognitive
+## Cognitive
 
 ???
 
@@ -121,7 +120,43 @@ class: center, middle
 
 class: center, middle
 
-# Easy News
+## Seizures
+
+???
+
+* Be aware that certain things can cause photoepileptic seizures
+
+---
+
+
+
+class: center, middle
+
+# Making your app accessible
+
+???
+
+* What are the ways in which you can make your content accessible to
+  as many people as possible?
+
+---
+
+class: center
+
+## Colour blindness testing
+
+<img src="color_scope_no_red.png" class='color_scope' />
+<img src="color_scope_no_green.png" class='color_scope' />
+<img src="color_scope_no_blue.png" class='color_scope' />
+<img src="color_scope_no_color.png" class='color_scope' />
+
+???
+
+---
+
+class: center, middle
+
+## Readability
 
 <img src="easy_news.png" id="easy-news" />
 
@@ -131,97 +166,29 @@ class: center, middle
 
 class: center, middle
 
-# Seizures
+## Audio Description, Transcription and Subtitles
 
 ???
-
-* Be aware that certain things can cause photoepileptic seizures
 
 ---
 
 class: center, middle
 
-# JavaScript Accessibility Anti-Patterns
+## Cater to all input devices
 
 ???
-
-* JavaScript allows you to do some powerful things
-* But there is a reason that it sometimes gets a bad rap in the a11y world
-* With great power yada yada
 
 ---
 
 class: center, middle
 
-# Thou shalt not add new content without user's knowledge
+## AT Friendly
 
 ???
 
-* Adding new content to the page that Assistive Devices can't see
-
 ---
 
-class: center, middle
 
-# Thou shalt not use indicators that can't be seen by some users
-
-???
-
-* Rollover effects that are missed by screen readers
-* Highlights/links that are missed by the colour blind
-
----
-
-class: center, middle
-
-# Thou shalt not usurp the browser/OS default controls
-
-???
-
-* Breaking, or worse changing, the default browser/OS controls
-
----
-
-class: center, middle
-
-# Thou shalt not constantly notify the user of changes
-
-???
-
-* Constantly changing/updating content
-
----
-
-class: center, middle
-
-# Thou shalt not move the user's position without their knowledge
-
-???
-
-* Moving the position of the user within the page without warning
-
----
-
-class: center, middle
-
-# Thou shalt not lock users in to your custom navigation
-
-???
-
-* Locking them in to your apps control system and making it
-  hard or impossible to get out
-
----
-
-class: center, middle
-
-# Thou shalt not lock users in to your defaults
-
-???
-
-* Not giving users the option to reduce notifcations
-
----
 
 class: center, middle
 
@@ -238,7 +205,7 @@ class: center, middle
 
 class: center, middle
 
-# Ordinary markup
+## Ordinary markup
 
 ```html
 <!-- fancy pants select -->
@@ -257,7 +224,7 @@ class: center, middle
 
 class: center, middle
 
-# Roles
+## Roles
 
 ```html
 <!-- fancy pants select -->
@@ -281,7 +248,7 @@ class: center, middle
 
 class: center, middle
 
-# Properties
+## Properties
 
 ```html
 <!-- fancy pants select -->
@@ -303,7 +270,7 @@ class: center, middle
 
 class: center, middle
 
-# States
+## States
 
 ```html
 <!-- fancy pants select -->
@@ -326,7 +293,7 @@ class: center, middle
 
 class: center, middle
 
-# Example
+## Usage
 
 ```html
 <!-- HTML -->
@@ -357,7 +324,7 @@ div.tooltip[aria-hidden="true"] { display: none }
 
 class: center, middle
 
-# Live regions
+## Live regions
 
 ```html
 <select id="bird-selector" aria-controls="bird-info">
@@ -383,7 +350,7 @@ class: center, middle
 
 class: center, middle
 
-# Live regions
+## Live regions
 
 ```html
 <ul id="roster" aria-live="polite" aria-relevant="additions removals">
@@ -401,6 +368,84 @@ class: center, middle
 
 ---
 
+
+
+class: center, middle
+
+# Accessibility Gotchas
+
+???
+
+* JavaScript allows you to do some powerful things
+* But there is a reason that it sometimes gets a bad rap in the a11y world
+* With great power yada yada
+
+---
+
+class: center, middle
+
+## Adding new content without user's knowledge
+
+???
+
+* Adding new content to the page that Assistive Devices can't see
+
+---
+
+class: center, middle
+
+## Use of indicators that some users can't see
+
+???
+
+* Rollover effects that are missed by screen readers
+* Highlights/links that are missed by the colour blind
+
+---
+
+class: center, middle
+
+## Usurping the browser/OS default controls
+
+???
+
+* Breaking, or worse changing, the default browser/OS controls
+
+---
+
+class: center, middle
+
+## Death by a thousand notifications
+
+???
+
+* Constantly changing/updating content
+
+---
+
+class: center, middle
+
+## Worm holes
+
+???
+
+* Moving the position of the user within the page without warning
+
+---
+
+class: center, middle
+
+## Lack of control/flexibility
+
+???
+
+* Locking them in to your apps control system and making it
+  hard or impossible to get out
+
+---
+
+
+
 class: center, middle
 
 # How much should you do?
@@ -411,7 +456,7 @@ class: center, middle
 
 class: center, middle
 
-# Be realistic
+## Be realistic
 
 ???
 
@@ -423,7 +468,7 @@ class: center, middle
 
 class: center, middle
 
-# Accessible by default?
+## Accessible by default?
 
 ???
 
@@ -434,7 +479,7 @@ class: center, middle
 
 class: center, middle
 
-# Altruistic vs. Savvy
+## Altruistic vs. Savvy
 
 ???
 
@@ -447,6 +492,8 @@ class: center, middle
 
 ---
 
+
+
 class: center, middle
 
 # Questions?
@@ -454,6 +501,8 @@ class: center, middle
 ???
 
 ---
+
+
 
 # Resources
 
