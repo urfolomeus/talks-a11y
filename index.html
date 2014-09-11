@@ -10,6 +10,8 @@
         font-weight: normal;
       }
       .remark-code, .remark-inline-code { font-family: 'Monaco'; font-size: 16px; text-align: left; }
+      .remark-notes { font-family: 'Helvetica Neue'; font-size: 18px; }
+      .remark-notes li { margin-bottom: 0.6em; }
       img#easy-news { width: 600px }
       img.color_scope { width: 240px }
     </style>
@@ -20,6 +22,8 @@
 class: center, middle
 
 # JavaScript, A11y and You
+
+<br/>
 
 ## Alan Gardner
 
@@ -35,11 +39,10 @@ class: center, middle
 
 ???
 
-* Estimated that approximately 10-20% of people that use the web have
-  a disability of some sort
-* Historically JavaScript has caused accessibility issues
-* Myths that Assistive Technology doesn't support JavaScript or that
-  impaired users turn it off
+* ~10-20% web users have impairment
+* Historically issues
+* Myth - AT support
+* Myth - impaired users don't JS
 
 ---
 
@@ -51,9 +54,6 @@ class: center, middle
 
 ???
 
-* Let's start by taking a look at the type of impairments that people
-  might have and how it might affect their usage of your web app
-
 ---
 
 class: center, middle
@@ -62,23 +62,10 @@ class: center, middle
 
 ???
 
-* This is the most obvious and widely talked about
 * Blind users
-  * use screen readers
-  * more on how to help with this later
-  * audio description on videos
 * Partially-sighted users
-  * user screen zooming (sometimes just magnifying glass)
-  * ensure your content scales well
-  * allow user to focus on content
-  * Readability mode
 * Colour blindness
-  * use a valid colour scheme or allow user to choose one that suits them
-  * try to include symbols as well as colours for indication
 * Photosensitive
-  * consider low-contrast or dark-themed version of the site
-  * be aware polarised lenses can sometimes interfere with the ability
-    to view the screen on some devices
 
 ---
 
@@ -88,10 +75,6 @@ class: center, middle
 
 ???
 
-* Subtitles
-* Transcription
-* Translate to British Sign Language
-
 ---
 
 class: center, middle
@@ -99,9 +82,6 @@ class: center, middle
 ## Motor
 
 ???
-
-* keyboard only input
-* voice activation
 
 ---
 
@@ -112,9 +92,9 @@ class: center, middle
 ???
 
 * In some cases only so much you can do
-* Pitch to the lowest reading level you need to
-* Lay your content out well
-* Be clear an concise in your message
+* Comprehension
+* Attention
+* Memory
 
 ---
 
@@ -124,7 +104,8 @@ class: center, middle
 
 ???
 
-* Be aware that certain things can cause photoepileptic seizures
+* Strobing images / animations
+* Optical illusions
 
 ---
 
@@ -135,9 +116,6 @@ class: center, middle
 # Making your app accessible
 
 ???
-
-* What are the ways in which you can make your content accessible to
-  as many people as possible?
 
 ---
 
@@ -156,11 +134,34 @@ class: center
 
 class: center, middle
 
-## Readability
+## Content design
+
+???
+
+* Well laid out
+* Scales well
+* Be clear an concise in your message
+
+---
+
+class: center, middle
+
+## Content design (specialised)
 
 <img src="easy_news.png" id="easy-news" />
 
 ???
+
+---
+
+class: center, middle
+
+## Readability
+
+???
+
+* Remove distraction
+* Doubles up as nice to print :)
 
 ---
 
@@ -196,10 +197,13 @@ class: center, middle
 
 ???
 
-* Web Accessibility Initiative - Accessible Rich Internet Applications
-* WAI-ARIA standard from W3C
-* Way to add semantic information to elements through HTML/XML attributes
-* Has three types of attributes: roles, properties and states
+* ARIA = Accessible Rich Internet Applications
+* WAI = Web Accessibility Initiative
+* Add semantic information using HTML attributes
+* Has three types of attributes
+  * roles
+  * properties
+  * states
 
 ---
 
@@ -238,11 +242,8 @@ class: center, middle
 ???
 
 * Describe the purpose of an element
-* divs and spans do not have enough semantic information to derive purpose
-* allow assistive devices to interact with a widget, such as a form, slider
-  or tabbed view as if it were a desktop equivalent
+* assistive devices can treat as desktop widget
 * once a role is set it should not be changed
-* if you need to change role use a new element instead
 
 ---
 
@@ -262,9 +263,9 @@ class: center, middle
 ???
 
 * Define characteristics of an element
-* required
-* draggable
-* associated modal
+  * required
+  * draggable
+  * associated modal
 
 ---
 
@@ -284,10 +285,10 @@ class: center, middle
 ???
 
 * Indicate the current state of an element
-* disabled
-* checked
-* busy
-* hidden
+  * disabled
+  * checked
+  * busy
+  * hidden
 
 ---
 
@@ -317,8 +318,8 @@ div.tooltip[aria-hidden="true"] { display: none }
 
 ???
 
-* use JavaScript to set the state or property and then
-  use CSS attribute selectors to add style etc.
+* set state with JavaScript
+* style with CSS attribute selectors
 
 ---
 
@@ -338,10 +339,10 @@ class: center, middle
 
 ???
 
-* Let you indicate that an element will be updated without a page refresh
+* Notify on updates (outside page refresh)
 * aria-live indicates that the element is a live region
-  * off (default) = no notification on update
-  * polite = waits until user takes a break until it notifies them
+  * off (default) = no notification
+  * polite = notification on idle
   * assertive = notifies the user straight away
 * aria-control indicates the live region that the control updates
 * WARNING: not fully adopted in all browsers
@@ -361,10 +362,9 @@ class: center, middle
 ???
 
 * advanced options
-  * atomic = when true notifies all contents of live region, when false only notifies changed items
-  * relevant = only notifies on add and/or update and/or removal
-  * labelledBy
-  * describedBy
+  * atomic = true == read out all, false == only read changes
+  * relevant = only notifies on (add || update || removal)
+  * labelledBy = which element has the label
 
 ---
 
@@ -376,9 +376,7 @@ class: center, middle
 
 ???
 
-* JavaScript allows you to do some powerful things
-* But there is a reason that it sometimes gets a bad rap in the a11y world
-* With great power yada yada
+* There is a reason that JS sometimes gets a bad rap in the a11y world
 
 ---
 
@@ -398,8 +396,9 @@ class: center, middle
 
 ???
 
-* Rollover effects that are missed by screen readers
-* Highlights/links that are missed by the colour blind
+* Rollover effects
+* Links
+* Coloured indicators
 
 ---
 
@@ -409,8 +408,6 @@ class: center, middle
 
 ???
 
-* Breaking, or worse changing, the default browser/OS controls
-
 ---
 
 class: center, middle
@@ -418,8 +415,6 @@ class: center, middle
 ## Death by a thousand notifications
 
 ???
-
-* Constantly changing/updating content
 
 ---
 
@@ -439,9 +434,6 @@ class: center, middle
 
 ???
 
-* Locking them in to your apps control system and making it
-  hard or impossible to get out
-
 ---
 
 
@@ -460,9 +452,7 @@ class: center, middle
 
 ???
 
-* You have a limited amount of time/money
-* Is it possible for your content to be consumed by a group
-  even with the best a11y you can manage (i.e. severe cognitive issues)?
+* Be aware of potential audience
 
 ---
 
@@ -483,12 +473,8 @@ class: center, middle
 
 ???
 
-* You shouldn't cut users off from your content just because you haven't
-  factored in time to make it available to them
-* On the one hand you may want to take the time to make your app available
-  to anyone
-* On the other hand you may want to try some research to prove that there is
-  a genuine need for the support
+* Don't shut people out
+* Prioritise in the usual manner
 
 ---
 
