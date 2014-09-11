@@ -13,7 +13,7 @@
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
       }
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; text-align: left; }
       img#easy-news { width: 600px }
     </style>
   </head>
@@ -119,6 +119,8 @@ class: center, middle
 
 ---
 
+class: center, middle
+
 # Easy News
 
 <img src="easy_news.png" id="easy-news" />
@@ -134,6 +136,268 @@ class: center, middle
 ???
 
 * Be aware that certain things can cause photoepileptic seizures
+
+---
+
+class: center, middle
+
+# JavaScript Accessibility Anti-Patterns
+
+???
+
+* JavaScript allows you to do some powerful things
+* But there is a reason that it sometimes gets a bad rap in the a11y world
+* With great power yada yada
+
+---
+
+class: center, middle
+
+# Thou shalt not add new content without user's knowledge
+
+???
+
+* Adding new content to the page that Assistive Devices can't see
+
+---
+
+class: center, middle
+
+# Thou shalt not use indicators that can't be seen by some users
+
+???
+
+* Rollover effects that are missed by screen readers
+* Highlights/links that are missed by the colour blind
+
+---
+
+class: center, middle
+
+# Thou shalt not usurp the browser/OS default controls
+
+???
+
+* Breaking, or worse changing, the default browser/OS controls
+
+---
+
+class: center, middle
+
+# Thou shalt not constantly notify the user of changes
+
+???
+
+* Constantly changing/updating content
+
+---
+
+class: center, middle
+
+# Thou shalt not move the user's position without their knowledge
+
+???
+
+* Moving the position of the user within the page without warning
+
+---
+
+class: center, middle
+
+# Thou shalt not lock users in to your custom navigation
+
+???
+
+* Locking them in to your apps control system and making it
+  hard or impossible to get out
+
+---
+
+class: center, middle
+
+# Thou shalt not lock users in to your defaults
+
+???
+
+* Not giving users the option to reduce notifcations
+
+---
+
+class: center, middle
+
+# ARIA
+
+???
+
+* Web Accessibility Initiative - Accessible Rich Internet Applications
+* WAI-ARIA standard from W3C
+* Way to add semantic information to elements through HTML/XML attributes
+* Has three types of attributes: roles, properties and states
+
+---
+
+class: center, middle
+
+# Ordinary markup
+
+```html
+<!-- fancy pants select -->
+<ol class="select">
+  <li class="option">Item 1</li>
+  <li class="option">Item 2</li>
+  <li class="option">Item 3</li>
+</ol>
+```
+
+???
+
+* Not semantic
+
+---
+
+class: center, middle
+
+# Roles
+
+```html
+<!-- fancy pants select -->
+<ol role="select">
+  <li role="option">Item 1</li>
+  <li role="option">Item 2</li>
+  <li role="option">Item 3</li>
+</ol>
+```
+
+???
+
+* Describe the purpose of an element
+* divs and spans do not have enough semantic information to derive purpose
+* allow assistive devices to interact with a widget, such as a form, slider
+  or tabbed view as if it were a desktop equivalent
+* once a role is set it should not be changed
+* if you need to change role use a new element instead
+
+---
+
+class: center, middle
+
+# Properties
+
+```html
+<!-- fancy pants select -->
+<ol role="select" aria-required="true">
+  <li role="option">Item 1</li>
+  <li role="option">Item 2</li>
+  <li role="option">Item 3</li>
+</ol>
+```
+
+???
+
+* Define characteristics of an element
+* required
+* draggable
+* associated modal
+
+---
+
+class: center, middle
+
+# States
+
+```html
+<!-- fancy pants select -->
+<ol role="select" aria-required="true">
+  <li role="option" aria-selected="true">Item 1</li>
+  <li role="option">Item 2</li>
+  <li role="option">Item 3</li>
+</ol>
+```
+
+???
+
+* Indicate the current state of an element
+* disabled
+* checked
+* busy
+* hidden
+
+---
+
+class: center, middle
+
+# Example
+
+```html
+<!-- HTML -->
+<div role="tooltip" aria-hidden="true">
+  Hello, World
+</div>
+```
+
+```javascript
+// JavaScript
+var showTip = function(el) {
+  el.setAttribute('aria-hidden', 'false');
+}
+```
+
+```css
+/* CSS */
+div.tooltip                     { background: yellow }
+div.tooltip[aria-hidden="true"] { display: none }
+```
+
+???
+
+* use JavaScript to set the state or property and then
+  use CSS attribute selectors to add style etc.
+
+---
+
+class: center, middle
+
+# Live regions
+
+```html
+<select id="bird-selector" aria-controls="bird-info">
+  <option>Chaffinch</option>
+  <option>Blackbird</option>
+  <option>Robin</option>
+</select>
+
+<div role="region" id="bird-info" aria-live="polite"></div>
+```
+
+???
+
+* Let you indicate that an element will be updated without a page refresh
+* aria-live indicates that the element is a live region
+  * off (default) = no notification on update
+  * polite = waits until user takes a break until it notifies them
+  * assertive = notifies the user straight away
+* aria-control indicates the live region that the control updates
+* WARNING: not fully adopted in all browsers
+
+---
+
+class: center, middle
+
+# Live regions
+
+```html
+<ul id="roster" aria-live="polite" aria-relevant="additions removals">
+  <!-- use JavaScript to add remove users here-->
+</ul>
+```
+
+???
+
+* advanced options
+  * atomic = when true notifies all contents of live region, when false only notifies changed items
+  * relevant = only notifies on add and/or update and/or removal
+  * labelledBy
+  * describedBy
 
 ---
 
@@ -185,140 +449,21 @@ class: center, middle
 
 class: center, middle
 
-# JavaScript Accessibility Issues
-
-???
-
-* JavaScript allows you to do some powerful things
-* But there is a reason that it sometimes gets a bad rap in the a11y world
-* With great power yada yada
-
----
-
-class: center, middle
-
-# Hiding content/functionality
-
-???
-
-* Adding new content to the page that Assistive Devices can't see
-* Rollover effects that are missed by screen readers
-
----
-
-class: center, middle
-
-# Confusing users
-
-???
-
-* Breaking, or worse changing, the default browser/OS controls
-* Constantly changing/updating content
-* Moving the position of the user within the page without warning
-
----
-
-class: center, middle
-
-# Taking away control
-
-???
-
-* Not giving users the option to change your defaults
-* Locking them in to your apps control system and making it
-  hard or impossible to get out
-
----
-
-class: center, middle
-
-# ARIA
-
-???
-
-* Web Accessibility Initiative - Accessible Rich Internet Applications
-* WAI-ARIA standard from W3C
-* Way to add semantic information to elements through HTML/XML attributes
-* Has three types of attributes: roles, properties and states
-
----
-
-class: center, middle
-
-# Roles
-
-???
-
-* Describe the purpose of an element
-* divs and spans do not have enough semantic information to derive purpose
-* allow assistive devices to interact with a widget, such as a form, slider
-  or tabbed view as if it were a desktop equivalent
-* once a role is set it should not be changed
-* if you need to change role use a new element instead
-
----
-
-class: center, middle
-
-# Properties
-
-???
-
-* Define characteristics of an element
-* required
-* draggable
-* associated modal
-
----
-
-class: center, middle
-
-# States
-
-???
-
-* Indicate the current state of an element
-* disabled
-* checked
-* busy
-* hidden
-* use JavaScript to set the state or property and then
-  use CSS attribute selectors to add style etc.
-
----
-
-class: center, middle
-
-# Live regions
-
-???
-
-* Let you indicate that an element will be updated without a page refresh
-* aria-live indicates that the element is a live region
-  * off (default) = no notification on update
-  * polite = waits until user takes a break until it notifies them
-  * assertive = notifies the user straight away
-* aria-control indicates the live region that the control updates
-* advanced options
-  * atomic = when true notifies all contents of live region, when false only notifies changed items
-  * relevant = only notifies on add and/or update and/or removal
-  * labelledBy
-  * describedBy
-* WARNING: not fully adopted in all browsers
-
----
-
-class: center, middle
-
-# Wrapping up
+# Questions?
 
 ???
 
 ---
-
-class: center, middle
 
 # Resources
+
+* W3C Guidelines - [http://www.w3.org/TR/WCAG/](http://www.w3.org/TR/WCAG/)
+* MDN Accessibility Guide - [https://developer.mozilla.org/en-US/docs/Web/Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
+* MDN ARIA Guide - [https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)
+* WebAIM articles - [http://webaim.org/articles/](http://webaim.org/articles/)
+* BBC My Web My Way - [http://www.bbc.co.uk/accessibility/best_practice/what_is.shtml](http://www.bbc.co.uk/accessibility/best_practice/what_is.shtml)
+* eAccessibility forum - [http://www.discuss.culture.gov.uk/eaccessibility/](http://www.discuss.culture.gov.uk/eaccessibility/)
+* GDS accessibility blog post - [https://gds.blog.gov.uk/2012/01/20/user-testing-accessibility/](https://gds.blog.gov.uk/2012/01/20/user-testing-accessibility/)
 
 ???
 
